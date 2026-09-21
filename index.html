@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Eddie Nguyen — Computer Science & Engineering student at the University of Oulu. AI, data, technology and community engagement portfolio.">
+<title>Eddie Nguyen — AI · Data · People</title>
+<style>
+:root{
+  --blue:#23408F;--cyan:#00AEEF;--teal:#4BBCA9;--purple:#662D91;
+  --ink:#15213D;--muted:#667085;--soft:#F5F7FB;--line:#E3E7EF;--white:#fff;
+  --shadow:0 18px 55px rgba(21,33,61,.10);--r:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#fff;line-height:1.65}
+a{text-decoration:none;color:inherit} button,input,textarea,select{font:inherit} img{max-width:100%;display:block}
+.nav{position:fixed;z-index:1000;top:0;left:0;right:0;height:74px;background:rgba(255,255,255,.78);backdrop-filter:blur(18px);border-bottom:1px solid rgba(227,231,239,.8)}
+.nav-inner{max-width:1180px;height:100%;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;font-weight:850}
+.brandmark{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;display:grid;place-items:center;font-size:14px;box-shadow:0 8px 22px rgba(35,64,143,.22)}
+.brand small{display:block;color:var(--muted);font-size:12px;letter-spacing:.07em;text-transform:uppercase}
+.navlinks{display:flex;gap:3px;align-items:center}.navlinks a{padding:9px 11px;border-radius:10px;color:#536075;font-size:14px;font-weight:750}.navlinks a:hover{background:#EEF2FB;color:var(--blue)}
+.navtoggle{display:none;border:0;background:none;font-size:25px;cursor:pointer}
+
+.hero{min-height:100vh;padding:calc(74px + 52px) 24px 68px;position:relative;overflow:hidden;color:#fff;background:#0E1B3C;isolation:isolate}
+.hero-slides{position:absolute;inset:0;z-index:-4}.hero-slide{position:absolute;inset:0;opacity:0;background-size:cover;background-position:center;transition:opacity 1.2s ease;filter:saturate(.72)}.hero-slide.active{opacity:1}
+.hero:before{content:"";position:absolute;inset:0;z-index:-3;background:linear-gradient(110deg,rgba(14,27,60,.97),rgba(35,64,143,.84) 46%,rgba(0,174,239,.25))}
+.hero:after{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(circle at 80% 18%,rgba(75,188,169,.28),transparent 26%),radial-gradient(circle at 20% 88%,rgba(102,45,145,.25),transparent 32%)}
+.hero-inner{max-width:1180px;min-height:calc(100vh - 142px);margin:auto;display:grid;grid-template-columns:1.22fr .78fr;gap:65px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 11px;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:rgba(255,255,255,.08);backdrop-filter:blur(10px);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.eyebrow:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 5px rgba(0,174,239,.13)}
+.hero h1{margin-top:20px;font-size:clamp(46px,6.7vw,84px);line-height:1;letter-spacing:-.055em;max-width:850px}.hero h1 span{background:linear-gradient(90deg,#fff,#BCEFFF);-webkit-background-clip:text;color:transparent}
+.hero-sub{margin-top:22px;max-width:700px;color:rgba(255,255,255,.82);font-size:clamp(16px,2vw,20px)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:29px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:13px;padding:12px 16px;font-size:14px;font-weight:850;cursor:pointer;transition:.2s}.btn:hover{transform:translateY(-2px)}
+.primary{background:#fff;color:var(--blue);box-shadow:0 14px 30px rgba(0,0,0,.16)}.glass{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px)}
+.stats{margin-top:42px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:760px}.stat{padding:13px 14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);border-radius:15px;backdrop-filter:blur(12px)}.stat strong{display:block;font-size:17px}.stat span{display:block;color:rgba(255,255,255,.64);font-size:12px;text-transform:uppercase;letter-spacing:.07em}
+.hero-profile{justify-self:end;width:min(100%,370px);margin-right:clamp(-56px,calc((1240px - 100vw) * .3),0px)}.profile{aspect-ratio:4/5;border-radius:32px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.28);background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.04));backdrop-filter:blur(12px);box-shadow:0 35px 80px rgba(0,0,0,.27)}.profile img{width:100%;height:100%;object-fit:cover}.profile-placeholder{width:100%;height:100%;display:grid;place-items:center;background:linear-gradient(145deg,#19367F,#0E1B3C);color:rgba(255,255,255,.68);font-size:14px;font-weight:800;letter-spacing:.1em}
+.profile-caption{position:absolute;left:18px;right:18px;bottom:18px;padding:14px;border-radius:17px;background:rgba(8,17,40,.58);border:1px solid rgba(255,255,255,.17);backdrop-filter:blur(15px)}.profile-caption strong{font-size:15px}.profile-caption span{display:block;color:rgba(255,255,255,.65);font-size:12px;margin-top:2px}
+.dots{position:absolute;right:24px;bottom:29px;display:flex;gap:7px}.dot{width:8px;height:8px;border:0;border-radius:99px;background:rgba(255,255,255,.3);cursor:pointer;transition:.25s}.dot.active{width:26px;background:#fff}
+
+.section{max-width:1180px;margin:auto;padding:100px 24px}.soft{background:var(--soft);max-width:none}.soft>.section{padding-top:92px;padding-bottom:92px}
+.heading{max-width:750px;margin-bottom:38px}.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:900;color:var(--blue)}h2{margin-top:7px;font-size:clamp(31px,4vw,50px);line-height:1.05;letter-spacing:-.04em}.lead{margin-top:13px;color:var(--muted);max-width:700px;font-size:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow)}
+.aboutgrid{display:grid;grid-template-columns:.85fr 1.15fr;gap:20px}.profile-list{margin-top:17px;display:grid;gap:12px}.prow{display:flex;justify-content:space-between;gap:22px;padding-bottom:11px;border-bottom:1px solid var(--line);font-size:14px}.prow span{color:var(--muted);min-width:100px}.prow strong{text-align:right}
+.academic-number{font-size:48px;line-height:1;font-weight:950;color:var(--blue);letter-spacing:-.05em}.academic-label{font-size:13px;color:var(--muted);margin-top:6px}.academicgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}.ministat{padding:14px;background:var(--soft);border-radius:14px}.ministat strong{display:block;font-size:18px}.ministat span{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.skills{display:flex;flex-wrap:wrap;gap:7px;margin-top:17px}.skill{padding:6px 9px;background:#EEF2FB;color:var(--blue);border-radius:8px;font-size:12px;font-weight:800}
+
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px}.filter{border:1px solid var(--line);background:#fff;color:#5A6577;padding:8px 11px;border-radius:999px;cursor:pointer;font-size:12px;font-weight:850}.filter.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.project{border:1px solid var(--line);border-radius:23px;background:#fff;padding:25px;transition:.25s;position:relative;overflow:hidden}.project:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#C8D3F0}.projecttop{display:flex;justify-content:space-between;align-items:center;gap:10px}.picon{width:41px;height:41px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:900;background:linear-gradient(135deg,var(--blue),var(--cyan))}.badge{font-size:12px;font-weight:900;padding:6px 8px;border-radius:999px;background:#EDF2FC;color:var(--blue);text-transform:uppercase;letter-spacing:.05em}.badge.ongoing{background:#E9F8F5;color:#187968}.project h3{margin-top:18px;font-size:21px;letter-spacing:-.025em}.project p{margin-top:7px;color:var(--muted);font-size:14px}.tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:15px}.tag{padding:5px 8px;background:#F1F3F7;border-radius:7px;color:#596579;font-size:12px;font-weight:800}.project-actions{display:flex;gap:7px;margin-top:19px}.small{border:1px solid var(--line);background:#fff;color:var(--blue);padding:8px 10px;border-radius:9px;font-size:12px;font-weight:850;cursor:pointer}.small:hover{background:#F2F5FC}
+
+.enggrid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.engcard{border:1px solid var(--line);border-radius:24px;background:#fff;padding:26px;box-shadow:var(--shadow)}
+.detail-list{display:grid;gap:11px;margin-top:19px}.detail-row{display:flex;gap:10px;align-items:flex-start}.check{width:21px;height:21px;flex:none;border-radius:7px;background:#E9F8F5;color:#187968;display:grid;place-items:center;font-size:13px;font-weight:900}.detail-row p{font-size:14px;color:var(--muted)}.detail-row strong{display:block;color:var(--ink);font-size:14px}
+.quote{background:linear-gradient(145deg,#132A67,#23408F);color:#fff;border-radius:26px;padding:31px;position:relative;overflow:hidden;min-height:100%}.quote:before{content:"“";position:absolute;right:-5px;top:-45px;font-size:150px;color:rgba(255,255,255,.07)}.quote p{font-size:21px;line-height:1.45;font-weight:700;position:relative}.quote span{display:block;margin-top:22px;color:rgba(255,255,255,.62);font-size:12px}
+.viewdetails{margin-top:22px}
+
+.media-intro{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}.media-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.media-cat{min-height:220px;border-radius:22px;overflow:hidden;position:relative;color:#fff;padding:23px;display:flex;align-items:end;background:linear-gradient(145deg,#23408F,#00AEEF)}.media-cat:nth-child(2){background:linear-gradient(145deg,#662D91,#23408F)}.media-cat:nth-child(3){background:linear-gradient(145deg,#187968,#23408F)}.media-cat:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 25%,rgba(0,0,0,.65))}.media-cat>div{position:relative;z-index:1}.media-cat h3{font-size:18px}.media-cat p{font-size:12px;color:rgba(255,255,255,.72);margin-top:3px}
+
+.cta{background:#0E1B3C;color:#fff;border-radius:31px;padding:50px;position:relative;overflow:hidden}.cta:after{content:"";position:absolute;width:400px;height:400px;right:-180px;top:-180px;border-radius:50%;background:radial-gradient(circle,rgba(0,174,239,.35),transparent 68%)}.cta p{color:rgba(255,255,255,.67);max-width:650px;margin-top:10px}.cta .actions{position:relative;z-index:1}
+footer{background:#091227;color:rgba(255,255,255,.6);padding:28px 24px}.footerinner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:15px;font-size:12px}.footerlinks{display:flex;gap:15px}.footerlinks a:hover{color:#fff}
+
+.reveal{opacity:0;transform:translateY(20px);transition:.65s}.reveal.visible{opacity:1;transform:none}
+.modal{position:fixed;inset:0;z-index:2000;display:none;place-items:center;padding:20px;background:rgba(8,16,36,.68);backdrop-filter:blur(9px)}.modal.open{display:grid}.modalbox{width:min(920px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:27px;padding:28px;box-shadow:0 35px 100px rgba(0,0,0,.32)}.close{float:right;border:0;background:#F1F3F7;width:34px;height:34px;border-radius:50%;cursor:pointer}.modal h3{font-size:28px;letter-spacing:-.035em}.modalbody{color:var(--muted);font-size:14px;margin-top:14px}.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:20px}.gallery img{width:100%;height:145px;object-fit:cover;border-radius:13px;background:#EDF2FB}.eventmeta{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}.eventmeta span{font-size:12px;font-weight:800;padding:5px 8px;border-radius:999px;background:#EEF2FB;color:var(--blue)}
+
+
+@media(max-width:900px){.navlinks{display:none}.navlinks.open{display:flex;position:absolute;top:68px;left:14px;right:14px;flex-direction:column;align-items:stretch;background:#fff;border:1px solid var(--line);padding:9px;border-radius:17px;box-shadow:var(--shadow)}.navtoggle{display:block}.hero-inner,.aboutgrid,.enggrid{grid-template-columns:1fr}.hero-profile{justify-self:start;max-width:310px}.stats{grid-template-columns:repeat(2,1fr)}.projects{grid-template-columns:1fr}.media-cats{grid-template-columns:1fr}.academicgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.section{padding:74px 18px}.soft>.section{padding-top:72px;padding-bottom:72px}.hero{padding-left:18px;padding-right:18px}.hero h1{font-size:46px}.academicgrid{grid-template-columns:1fr 1fr}.prow{flex-direction:column;gap:3px}.prow strong{text-align:left}.gallery{grid-template-columns:1fr 1fr}.footerinner{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+.footerinner{align-items:center;flex-wrap:wrap}.socials{display:flex;gap:10px}.soc{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.09);color:rgba(255,255,255,.88);transition:.2s}.soc:hover{background:var(--cyan);color:#fff;transform:translateY(-2px)}.soc svg{width:19px;height:19px;fill:currentColor}
+
+.orgblock{margin-bottom:56px}.orghead{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:18px}.orghead .skills{margin-top:10px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ecard{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:.25s}
+.ecard:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#C8D3F0}
+.ecover{aspect-ratio:16/10;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center;color:rgba(255,255,255,.85);font-weight:900;font-size:34px;overflow:hidden}
+.ecover.vsaf{background:linear-gradient(135deg,var(--purple),var(--blue))}.ecover.media{background:linear-gradient(135deg,#187968,var(--blue))}
+.ecover img{width:100%;height:100%;object-fit:cover}.ecover:empty::after{content:"";width:46%;aspect-ratio:1;border-radius:50%;border:2px solid rgba(255,255,255,.28);box-shadow:0 0 0 20px rgba(255,255,255,.08),0 0 0 42px rgba(255,255,255,.05)}
+.ebody{padding:18px;display:flex;flex-direction:column;gap:9px;flex:1}
+.ebody h4{font-size:17px;line-height:1.3;letter-spacing:-.01em}
+.ebody p{font-size:14px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.more{margin-top:auto;padding-top:4px;font-size:13px;font-weight:800;color:var(--blue)}
+.togglebar{display:flex;justify-content:center;margin-top:22px}.togglebar .small{padding:11px 18px;font-size:13px}
+.gallery figure{margin:0}.gallery figcaption{font-size:12px;color:var(--muted);margin-top:5px}.gallery img{cursor:zoom-in}
+.gallery.big{grid-template-columns:1fr;gap:16px}.gallery.big img{width:100%;height:auto;max-height:460px;object-fit:contain;background:#F1F3F7}.gallery:empty{display:none}
+.linkbtn{display:inline-flex;margin-top:16px;background:var(--blue);color:#fff;padding:11px 16px;border-radius:11px;font-size:13px;font-weight:800}
+.lightbox{position:fixed;inset:0;z-index:2500;display:none;place-items:center;background:rgba(8,16,36,.92);padding:20px;cursor:zoom-out}.lightbox.open{display:grid}.lightbox img{max-width:100%;max-height:90vh;border-radius:8px}
+.psec{margin-top:22px}.psec h4{font-size:12px;text-transform:uppercase;letter-spacing:.11em;color:var(--blue);margin-bottom:9px}
+.factgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.fact{background:var(--soft);border-radius:14px;padding:12px 14px}.fact span{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}.fact strong{display:block;font-size:14px;color:var(--ink);margin-top:2px}
+.flow{display:flex;flex-wrap:wrap;gap:8px 6px}.flow span{background:#EEF2FB;color:var(--blue);font-size:12px;font-weight:800;padding:6px 10px;border-radius:8px}.flow span:not(:last-child)::after{content:"→";margin-left:8px;color:var(--cyan)}
+.eventmeta .st{background:#E3F6EE;color:#187968}
+.cpoints{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:6px 0 30px}.cpoint{border-top:3px solid var(--teal);padding-top:12px}.cpoint h3{font-size:16px}.cpoint p{margin-top:4px;color:var(--muted);font-size:14px}
+.collage{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;grid-auto-flow:dense;gap:12px}.collage:empty{display:none}
+.collage figure{margin:0;position:relative;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.collage img{width:100%;height:100%;object-fit:cover;cursor:zoom-in}
+.collage figcaption{position:absolute;left:12px;right:12px;bottom:10px;color:#fff;font-size:12px;font-weight:800;text-shadow:0 1px 6px rgba(0,0,0,.55)}
+.collage figure:nth-child(1){grid-column:span 2;grid-row:span 2}.collage figure:nth-child(3){grid-row:span 2}
+@media(max-width:900px){.cpoints{grid-template-columns:1fr}.collage{grid-template-columns:repeat(2,1fr);grid-auto-rows:130px}.collage figure:nth-child(n){grid-column:auto;grid-row:auto}.collage figure:nth-child(1),.collage figure:nth-child(8){grid-column:span 2}}
+@media(max-width:900px){.cards{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.cards{grid-template-columns:1fr}.gallery.big{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#home">
+      <span class="brandmark">EN</span>
+      <span>Eddie Nguyen<small>CSE · ITEE · University of Oulu</small></span>
+    </a>
+    <button class="navtoggle" aria-label="Open menu" onclick="toggleNav()">☰</button>
+    <div class="navlinks" id="navlinks">
+      <a href="#about">About</a>
+      <a href="#technical">Technical</a>
+      <a href="#engagement">Leadership</a>
+      <a href="#media">Media</a>
+        <a href="#community">Community</a>
+      <a href="#application">Material</a>
+          </div>
+  </div>
+</nav>
+
+<main id="home">
+<section class="hero">
+  <div class="hero-slides" id="heroSlides"></div>
+  <div class="hero-inner">
+    <div class="reveal">
+      <div class="eyebrow">Year 2 · ITEE · University of Oulu</div>
+      <h1>At the <span>intersection</span> of AI, data & people.</h1>
+      <p class="hero-sub">Computer Science & Engineering student combining technical development, AI/data projects, university engagement and international communication.</p>
+      <div class="actions">
+        <a class="btn primary" href="#technical">Explore my work →</a>
+        <a class="btn glass" href="#application">View application material</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>5/5</strong><span>GPA</span></div>
+        <div class="stat"><strong>92 ECTS</strong><span>Completed</span></div>
+        <div class="stat"><strong>1 year</strong><span>Ambassador</span></div>
+        <div class="stat"><strong>6 projects</strong><span>4 completed · 2 prototype & concept</span></div>
+      </div>
+    </div>
+    <div class="hero-profile reveal">
+      <div class="profile" id="portraitBox">
+        <div class="profile-placeholder">EN</div>
+        <div class="profile-caption"><strong>Eddie Nguyen</strong><span>Computer Science & Engineering · Oulu, Finland</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="dots" id="heroDots"></div>
+</section>
+
+<section class="section reveal" id="about">
+  <div class="heading">
+    <div class="kicker">01 · About</div>
+    <h2>A technical student with a broader view.</h2>
+    <p class="lead">I build technical work while staying close to students, communities and real-world collaboration.</p>
+  </div>
+  <div class="aboutgrid">
+    <div class="card">
+      <div class="kicker">Profile</div>
+      <div class="profile-list">
+        <div class="prow"><span>Programme</span><strong>BSc Computer Science & Engineering</strong></div>
+        <div class="prow"><span>University</span><strong>University of Oulu</strong></div>
+        <div class="prow"><span>Faculty</span><strong>Faculty of Information Technology and Electrical Engineering</strong></div>
+        <div class="prow"><span>Year</span><strong>Bachelor Year 2</strong></div>
+        <div class="prow"><span>Location</span><strong>Oulu, Finland</strong></div>
+        <div class="prow"><span>Languages</span><strong>English (IELTS 8.0) · Vietnamese · Swedish (developing) · Finnish (developing)</strong></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="kicker">Academic snapshot</div>
+      <div style="margin-top:16px"><div class="academic-number">5</div><div class="academic-label">GPA · scale 0–5</div></div>
+      <div class="academicgrid">
+        <div class="ministat"><strong>92</strong><span>ECTS completed</span></div>
+        <div class="ministat"><strong>AI</strong><span>Current direction</span></div>
+        <div class="ministat"><strong>Data</strong><span>Focus area</span></div>
+        <div class="ministat"><strong>ITEE</strong><span>Faculty</span></div>
+      </div>
+      <div class="skills">
+        <span class="skill">Python</span><span class="skill">Data Processing</span><span class="skill">Data Analysis</span><span class="skill">Data Visualization</span><span class="skill">AI Tools</span><span class="skill">Algorithms</span><span class="skill">Databases</span><span class="skill">Reporting</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="soft" id="technical">
+<section class="section reveal">
+  <div class="heading"><div class="kicker">02 · Project & evidence</div><h2>Projects are the evidence.</h2><p class="lead">Completed work shows what I can deliver. Ongoing work shows where I am heading.</p></div>
+  <div class="filters">
+    <button class="filter active" data-filter="all">All</button><button class="filter" data-filter="completed">Completed</button><button class="filter" data-filter="ai">AI / Data</button><button class="filter" data-filter="python">Python</button>
+  </div>
+  <div class="projects" id="projects"></div>
+</section>
+</div>
+
+<section class="section reveal" id="engagement">
+  <div class="heading"><div class="kicker">03 · Representation & leadership</div><h2>Technology is also about people.</h2><p class="lead">University representation, public speaking and student-association work. Open any card for the full story, photos and links.</p></div>
+  <div class="orgblock">
+    <div class="orghead"><div><div class="kicker">University of Oulu Ambassador</div><div class="skills">
+        <span class="skill">Public Speaking</span><span class="skill">Student Engagement</span><span class="skill">Event Support</span><span class="skill">Presentation</span><span class="skill">International Communication</span><span class="skill">Media Support</span>
+      </div></div></div>
+    <div class="cards" id="cards-ambassador"></div>
+    <div class="togglebar"><button class="small" id="toggle-ambassador" onclick="toggleExpand('ambassador')"></button></div>
+  </div>
+  <div class="quote" style="margin-bottom:56px"><p>I enjoy being the person who can move between technical details, people and the bigger picture.</p><span>Personal working principle</span></div>
+  <div class="orgblock">
+    <div class="orghead"><div><div class="kicker">VSAF · Vietnamese Student Association in Finland</div><div class="skills">
+        <span class="skill">Content Planning</span><span class="skill">Community Building</span><span class="skill">Market Research</span><span class="skill">Coordination</span><span class="skill">International Network</span><span class="skill">Media Production</span>
+      </div></div></div>
+    <div class="cards" id="cards-vsaf"></div>
+    <div class="togglebar"><button class="small" id="toggle-vsaf" onclick="toggleExpand('vsaf')"></button></div>
+  </div>
+</section>
+
+<div class="soft" id="media">
+<section class="section reveal">
+  <div class="heading"><div class="kicker">04 · Media & content</div><h2>Communication is part of the work.</h2><p class="lead">Videos, posts and written content I planned, produced or supported. Open any card to see the work.</p></div>
+  <div class="filters" id="mediaFilters">
+    <button class="filter active" data-mf="all" onclick="setMediaFilter('all')">All</button><button class="filter" data-mf="video" onclick="setMediaFilter('video')">Video</button><button class="filter" data-mf="social" onclick="setMediaFilter('social')">Posts & social</button><button class="filter" data-mf="written" onclick="setMediaFilter('written')">Blogs & campaigns</button>
+  </div>
+  <div class="cards" id="cards-media"></div>
+  <div class="togglebar"><button class="small" id="toggle-media" onclick="toggleExpand('media')"></button></div>
+</section>
+</div>
+
+<section class="section reveal" id="community">
+  <div class="heading"><div class="kicker">05 · Community connection</div><h2>Helping the North become a place worth living in.</h2><p class="lead" style="font-size:16px">As an international student in Oulu, I want to help the community in the North become a place that is good to live in: welcoming, connected and somewhere people can build their future. This is also the direction of the IKAPO project, which supports international students' careers and smoother employment in North Ostrobothnia.</p></div>
+  <div class="cpoints">
+    <div class="cpoint"><h3>Welcoming newcomers</h3><p>Airport Pickup and Get Together help newly arrived Vietnamese students take their first steps in Finland and meet the community.</p></div>
+    <div class="cpoint"><h3>Connecting communities</h3><p>Through VSAF and VietLead, I connect with Vietnamese student associations in other European countries.</p></div>
+    <div class="cpoint"><h3>Connecting students and the university</h3><p>As a University of Oulu ambassador, I help prospective and new students understand what studying and living in the North is like.</p></div>
+  </div>
+  <div class="collage" id="collage"></div>
+</section>
+
+<section class="section reveal" id="application">
+  <div class="cta">
+    <div class="kicker" style="color:#8EDCFF">06 · Application material</div>
+    <h2 style="margin-top:8px">Selected application material.</h2>
+    <p>A concise view of my academic background, technical work, AI development and community engagement.</p>
+    <div class="actions"><a class="btn primary" data-link="cv" target="_blank" rel="noopener">View CV →</a><a class="btn glass" data-link="trans" target="_blank" rel="noopener">Transcripts ↗</a></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="footerinner"><div>© 2026 Eddie Nguyen · Oulu, Finland</div><div class="socials"><a class="soc" data-link="facebook" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></a><a class="soc" data-link="linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a><a class="soc" data-link="instagram" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg></a><a class="soc" data-link="email" target="_blank" rel="noopener" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13A1.5 1.5 0 0 1 3.5 4zm.7 2 7.8 6.2L19.8 6H4.2zm15.8 2.3-7.4 5.9a1 1 0 0 1-1.2 0L4 8.3V18h16V8.3z"/></svg></a></div><div class="footerlinks"><a href="#home">Back to top ↑</a></div></div></footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" alt=""></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" onclick="closeModal(event)"><div class="modalbox"><button class="close" aria-label="Close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
+
+<script>
+/* DEFAULT LINKS: replace each with your own. Empty values hide that button/icon. */
+const LINKS={
+  cv:"assets/Eddie_Nguyen_CV.pdf",
+  github:"https://github.com/Eddiethedatascientist",
+  linkedin:"https://www.linkedin.com/in/tran-gia-bao-nguyen-a0449b391/",
+  facebook:"https://www.facebook.com/eddie.nguyen.9461",
+  instagram:"https://www.instagram.com/p/Db3Apu9lq4q/",
+  email:"ntgiabao.05@gmail.com",
+  cv:"https://drive.google.com/drive/folders/199bkxMAyYpNbT9bqX7n8TQoschlmdW_V?usp=sharing",
+  trans:"https://drive.google.com/drive/folders/1DTF12_AI3DOBg_iqzuaC7RiDrqg_vVDN?usp=sharing"
+};
+
+const DEFAULT = {
+  hero:["assets/hero-1.jpg","assets/hero-2.jpg","assets/hero-3.jpg","assets/hero-4.jpg","assets/hero-5.jpg"],
+  portrait:"assets/portrait.jpg",
+  community:["assets/c-1.jpg","assets/c-2.jpg","assets/c-3.jpg","assets/c-4.jpg","assets/c-5.jpeg","assets/c-6.jpg","assets/c-7.jpg","assets/c-8.jpg"],
+  projects:[
+    {id:"spectrum",title:"Spectrum Signal Analysis Toolkit",status:"Completed · Grade 5",ongoing:false,category:"completed python",icon:"Σ",
+      desc:"Python desktop application that turns 20 raw spectrum measurement files into a cleaned, analysed and exported spectrum, through an interactive Tkinter interface.",
+      facts:[{k:"Input",v:"20 files · 500 rows each"},{k:"Result",v:"Grade 5 (133/150)"},{k:"Course",v:"Elementary Programming"},{k:"Stack",v:"Python · Tkinter · NumPy · Matplotlib"}],
+      case:"Built for the Elementary Programming course at the University of Oulu. The goal was to automate the whole workflow of spectrum analysis, from raw measurement files to a processed figure. Each of the 20 files holds 500 rows of energy and measured intensity. The program validates the data, plots the original spectrum, reduces noise, calculates the peak area with NumPy's trapezoidal integration and saves the figures as images.",
+      flow:["Select folder","Read and validate files","Extract energy and intensity","Original spectrum","Noise reduction","Peak area","Export figures"],
+      skills:[
+        {t:"Scientific data processing",d:"Automatically loads 20 measurement files and extracts energy and intensity values."},
+        {t:"Numerical analysis",d:"Calculates the peak area with NumPy's trapezoidal integration (numpy.trapezoid)."},
+        {t:"Data visualisation",d:"Plots the original and processed spectra with Matplotlib and exports them as images."},
+        {t:"Validation and error handling",d:"Checks the input data and handles file problems with exception handling."},
+        {t:"GUI development",d:"Interactive Tkinter interface for loading data, processing and exporting."},
+        {t:"Modular software design",d:"GUI (guilib.py) is kept separate from data processing (data_processing.py)."}
+      ],
+      next:"Possible next steps: automatic peak detection, baseline correction, more noise filters and CSV export.",
+      deeper:"The README on GitHub covers the file format, the full processing pipeline, the project structure and future improvements.",
+      code:"https://github.com/Eddiethedatascientist/Spectrum-calculation-and-analysis/blob/main/README.md",
+      repo:"Spectrum-signal-analysis-toolkit",linkLabel:"Read the full README on GitHub ↗",
+      tags:["Python","Tkinter","NumPy","Matplotlib","Data Processing","Modular Programming"],
+      images:[{src:"assets/spectrum-gui.jpg",caption:"Interactive interface"},{src:"assets/spectrum-workflow.jpg",caption:"Processing workflow"}]},
+        {id:"maze",title:"Maze Solver & Algorithm Visualization Tool",status:"Completed · v1.0",ongoing:false,category:"completed python ai",icon:"⌁",
+      desc:"Python desktop application for loading, solving and visualising mazes with four pathfinding algorithms implemented from scratch, and comparing them by explored tiles, route length and runtime.",
+      facts:[{k:"Type",v:"Personal project"},{k:"Based on",v:"Introduction to AI course"},{k:"Algorithms",v:"A* · Greedy · BFS · DFS (from scratch)"},{k:"Stack",v:"Python · Tkinter"},{k:"Example run (BFS)",v:"68 tiles explored · route length 21"}],
+      case:"A personal project built to consolidate and visualise what I learned in the Introduction to AI course at the University of Oulu, with a focus on search algorithms. The application loads maze data from external .txt files, lets the user choose an algorithm in a Tkinter GUI, solves the maze and shows the explored tiles, the final route and performance metrics (tiles explored, route length and runtime). Because the same maze can be solved with each algorithm, the tool also works as a small platform for comparing how the algorithms behave.",
+      flow:["Load maze (.txt)","Process and store maze data","Choose algorithm","Solve (A*, Greedy, BFS or DFS)","Reconstruct route","Visualise explored tiles and route","Show metrics"],
+      skills:[
+        {t:"Search algorithms",d:"Implemented A* Search, Greedy Search, BFS and DFS from scratch."},
+        {t:"Heuristic search",d:"A* combines path cost and a heuristic (f = g + h). Greedy Search is driven by a Euclidean-distance heuristic."},
+        {t:"Graph traversal and state management",d:"Tracks visited states, the frontier and the route, then reconstructs the final path."},
+        {t:"Algorithm performance comparison",d:"Measures tiles explored, route length and runtime (time.perf_counter) for each run."},
+        {t:"GUI development",d:"Tkinter interface for loading a maze, choosing an algorithm, viewing the visualisation and results, and resetting."},
+        {t:"Modular software architecture",d:"Separate modules for each algorithm, the visualisation and the GUI, with a common output structure for results."}
+      ],
+      next:"Planned next: animated step-by-step search visualisation, an algorithm comparison mode, visualisation of A* and Greedy heuristic values and the search frontier, input validation and error handling for invalid mazes, more maze datasets and exporting results.",
+      deeper:"The README and source code on GitHub cover each algorithm, the module structure, the maze file format and the planned improvements.",
+      code:"https://github.com/Eddiethedatascientist/maze-solver-program/tree/main/README.md#maze-solver--algorithm-solver-and-visualization-tool",
+      repo:"Maze-Solver",
+      tags:["Python","Tkinter","A* Search","Greedy Search","BFS","DFS","Heuristic Search","Graph Search","Modular Programming"],
+      images:[{src:"assets/maze-result.jpg",caption:"Solved maze with explored tiles and route"},{src:"assets/maze-architecture.jpg",caption:"Application architecture (illustration)"}]},
+       {id:"scrapper",title:"Job Posting Monitor",status:"Prototype · Phase 1 done",ongoing:true,category:"ai python",icon:"AI",
+      desc:"Data pipeline prototype that finds the data endpoints behind job websites, pulls postings with HTTP requests, cleans them and normalises them into one format. Phase 2 will add a database and AI monitoring with email reports.",
+      facts:[{k:"Stage",v:"Prototype · Phase 1 done"},{k:"Working now",v:"Endpoints · HTTP requests · cleaning · normalisation"},{k:"Phase 2",v:"Database · AI monitoring · email reports"},{k:"Stack",v:"Python · HTTP requests · SQL (learning)"}],
+      case:"A personal project to practise the building blocks of a data pipeline. In Phase 1 I experimented with finding data endpoints on job websites that respond with status code 200, pulling the data with HTTP requests, cleaning it down to the job-related fields and normalising it into one consistent format (job id, title, location, URL) that fits a planned SQL table. I am now learning databases to store and manage the data.",
+      flow:["Find endpoints (status 200)","Pull data with HTTP requests","Data cleaning","Data normalisation"],
+      skills:[
+        {t:"Data extraction",d:"Found data endpoints that respond with status code 200 and pulled the data with HTTP requests."},
+        {t:"Data cleaning",d:"Filtered the raw responses down to the job-related data that is needed."},
+        {t:"Data normalisation",d:"Converted the data into one consistent format (job_id, title, location, url)."},
+        {t:"Data modelling (in progress)",d:"Learning SQL and database fundamentals to store and manage the data."}
+      ],
+      next:"Phase 2: learn and set up a SQL database to manage the data, then use AI to monitor the postings continuously and email a report of the changes over a recent period (for example, the last 2 hours).",
+      deeper:"The repository contains the Phase 1 code experiments, with a README describing what works and what is planned.",
+      code: "https://github.com/Eddiethedatascientist/job-posting-monitor",
+      repo:"job-posting-monitor",linkLabel:"See the experiments on GitHub ↗",
+      tags:["Python","HTTP requests","Data Cleaning","Data Normalisation","SQL (learning)"],
+      images:[]},
+        {id:"assistant",title:"AI Student Assistant",status:"Concept · not started",ongoing:true,category:"ai",icon:"✦",
+      desc:"Idea for an admissions assistant that answers repetitive applicant questions and points people with complex questions to the right contact.",
+      facts:[{k:"Stage",v:"Idea only"},{k:"Problem",v:"Repeated questions at peak admission times"},{k:"Idea",v:"Chatbot that routes complex questions"}],
+      case:"The problem: during admission season the marketing team and more than 100 student ambassadors cannot answer every question at peak times, many questions repeat, and the university website has no agent that can answer visitors directly. The idea is a chatbot that keeps simple conversations going and, when a question becomes complex, tells the person who to contact instead of sending them to a general group. I have not started building it yet.",
+      skills:[
+        {t:"Problem identification",d:"Spotted a repeated bottleneck in how admission questions are handled."},
+        {t:"Solution design",d:"Outlined a chatbot that handles simple questions and routes complex ones to the right person."}
+      ],
+      tags:["Concept","Chatbot","LLM"],images:[]},
+         {id:"cybersec",title:"Cyber Security Portfolio",status:"Completed · Grade 5 · Top 5%",ongoing:false,category:"completed",icon:"CS",
+      desc:"A 70-page course portfolio for Introduction to Cyber Security, combining hands-on experiments (hacking, brute-forcing, DDoS-related concepts, AI prompt-injection attacks) with written analysis of each result. Graded 5 and ranked in the top 5% of the batch.",
+      facts:[{k:"Course",v:"Introduction to Cyber Security"},{k:"Result",v:"Grade 5 · Top 5% of the batch"},{k:"Length",v:"70 pages"},{k:"Format",v:"Written portfolio, chapter by chapter"}],
+      case:"For each topic covered in the course, I ran a hands-on experiment and wrote it up with an objective, a method, the result and an analysis connecting it back to the theory. The portfolio covers offensive and defensive security end to end: setting up a Kali Linux and Docker lab, OSINT and reconnaissance, authentication and password cracking, email and network-traffic analysis, firewalls, vulnerability management, a live penetration-testing exercise on Hack The Box, secure coding, and testing how easily an AI system can be manipulated into leaking a password it was told to protect. It was graded 5 and placed in the top 5% of the strongest portfolios in the batch.",
+      code:"https://drive.google.com/drive/folders/1qykC7ebhlECic-niE0A99SFyqbxn2TG4?usp=sharing",
+      linkLabel:"View the portfolio",
+      skills:[
+        {t:"Technical reporting",d:"Wrote up 20 chapters of hands-on experiments in a consistent objective-method-result-analysis structure, across roughly 70 pages."},
+        {t:"Data and log analysis",d:"Analysed terminal output, DNS records, HTTP headers and packet captures (Wireshark) to draw conclusions rather than just running tools."},
+        {t:"Offensive security fundamentals",d:"Practised reconnaissance, password brute-forcing (Hydra, John the Ripper) and a full penetration test on a Hack The Box machine, from scanning to gaining access."},
+        {t:"Defensive security fundamentals",d:"Audited SPF/DMARC email records, tested firewall port exposure, mapped vulnerabilities to CWE/CVE categories, and fixed a buffer-overflow flaw in code."},
+        {t:"AI security awareness",d:"Tested how an AI system meant to guard a password could be manipulated with prompt-injection and encoding tricks, and drew conclusions on the limits of language-based security."},
+        {t:"Self-directed technical exploration",d:"Set up and troubleshot a Kali Linux and Docker lab environment from scratch to run every experiment."}
+      ],
+      next:"The portfolio itself is the final submitted document; the PDF is available on request.",
+      tags:["Cyber Security","Reporting","Data Analysis","Networking","Penetration Testing","AI Security"],
+      images:[]},
+      {id:"irrigation",title:"Smart Plant Watering System",status:"Completed",ongoing:false,category:"completed python",icon:"µP",
+      desc:"Automatic plant-watering system built on a Raspberry Pi Pico. Soil moisture and water-reservoir level sensors decide when to run the pump, with LED status indicators, programmed in MicroPython.",
+      facts:[{k:"Type",v:"Embedded systems project"},{k:"Board",v:"Raspberry Pi Pico"},{k:"Language",v:"MicroPython"},{k:"Sensors",v:"Soil moisture · Ultrasonic water level"}],
+      case:"Developed as an embedded systems project. The Raspberry Pi Pico continuously monitors both the soil moisture and the water reservoir level, and decides whether the water pump should be activated. The system also gives visual feedback through LEDs to show its current operating status.",
+      flow:["Read soil moisture","Measure water level (ultrasonic)","Dry soil + water available → pump ON","Wet soil → pump OFF","Empty reservoir → pump stays OFF","Update LED status"],
+      code: "https://github.com/Eddiethedatascientist/Self-watering-plant",
+      linkLabel: "View on Github",
+      skills:[
+        {t:"Embedded programming",d:"Programmed the Raspberry Pi Pico in MicroPython to read sensors and control hardware in real time."},
+        {t:"Sensor integration",d:"Combined a capacitive soil moisture sensor and an ultrasonic distance sensor to make watering decisions."},
+        {t:"Pump protection logic",d:"Keeps the pump off whenever the reservoir is empty, regardless of soil moisture, to prevent dry running."},
+        {t:"State-based control and hardware/software integration",d:"Drives a relay-controlled 5V pump and 4 status LEDs based on the combined sensor state."}
+      ],
+      next:"Possible next steps: an OLED display, a mobile app, Wi-Fi monitoring, data logging, remote control and adjustable moisture thresholds.",
+      tags:["MicroPython","Raspberry Pi Pico","Sensor Integration","Embedded Systems"],
+      images:["assets/irrigation-1.jpg","assets/irrigation-2.jpg"]},
+
+  ],
+  
+  events:{
+        ambassador:[
+      {title:"Laanila High School Visit",date:"October 2025",role:"Co-presenter · Ambassador",
+        outcome:"Co-presented in English to Finnish upper-secondary students, sharing an international student perspective. Students asked many questions about studying and student life.",
+        star:{s:"Represented the University of Oulu and the ITEE Faculty during a school visit for Finnish upper-secondary students.",
+          t:"Promote Information Technology, Electrical Engineering and Computer Science as study options and provide an international student perspective.",
+          a:"Co-presented in English with another ambassador, introducing the programmes and sharing first-hand experience as an international student in Finland.",
+          r:"Generated strong student engagement, with students actively asking questions about studying, student life and the international experience at the University of Oulu."},images:["assets/laanila-1.jpg"]},
+      {title:"Hakijan Päivä 2025",date:"5–6 November 2025",role:"Info Balloon · Lecture Hall Assistant",
+        outcome:"Two days supporting the open day as an Info Balloon ambassador and Lecture Hall Assistant, helping visitors and keeping sessions running smoothly.",
+        star:{s:"Supported Hakijan Päivä, a major University of Oulu open-day event welcoming prospective students from schools across Finland, over two days.",
+          t:"Help visitors navigate the campus and make their experience easier, and make sure the lecture sessions were prepared and could run smoothly.",
+          a:"Day 1: worked as an Info Balloon ambassador, staying visible around campus, assisting visitors and responding patiently to questions and requests. Day 2: worked as a Lecture Hall Assistant, preparing microphones, presentation equipment and the room before speakers and students arrived.",
+          r:"Helped create a welcoming and accessible experience for prospective students and supported smooth delivery of the programme, strengthening communication, customer-service and community-engagement skills and demonstrating reliability and attention to detail in a fast-paced event environment."},images:["assets/hakijan-1.jpg","assets/hakijan-2.jpg"]},
+      {title:"Studia 2025",date:"25–26 November 2025 · Helsinki",role:"Ambassador",
+        outcome:"Part of a 23-person ambassador team and the only international student ambassador, engaging prospective students from across Finland.",
+        star:{s:"Represented the University of Oulu at Studia, a major national education event bringing together higher-education institutions from across Finland.",
+          t:"Engage with prospective students and communicate what studying at the University of Oulu can offer.",
+          a:"Worked within a 23-person ambassador team as the **only international student ambassador**, engaging with Finnish and international prospective students, including students travelling to Helsinki specifically to explore study opportunities in Finland.",
+          r:"Provided prospective students with a first-hand international perspective on studying in Oulu, while representing the university to a diverse national audience."},images:["assets/studia-1.jpg","assets/studia-2.jpg"]},
+      {title:"University of Oulu Instagram Takeover",date:"2026",role:"Ambassador",
+        outcome:"Took over the University's Instagram to share the experience of studying and living in Oulu, generating strong audience interaction.",
+        star:{s:"Took over the University of Oulu's Instagram to share the experience of studying and living in Oulu.",
+          t:"Give prospective students an authentic student perspective beyond formal university information.",
+          a:"Created and published a series of stories covering my academic experience, daily student life and personal perspective after my first year in Finland.",
+          r:"Generated strong audience interaction and questions, increasing engagement around the international student experience and life in Oulu."},images:["assets/ig-takeover-1.png"]},
+      {title:"Student Experience Instagram Live",date:"2026",role:"Cameraman",
+        outcome:"Worked as the cameraman for a Student Experience Instagram Live, coordinating with the presenters during a live broadcast.",
+        star:{s:"Supported a Student Experience Instagram Live as part of the university's student-facing communication.",
+          t:"Contribute to the production while helping communicate the student experience through social media.",
+          a:"Worked as the **cameraman**, operating behind the scenes while coordinating with the presenters and adapting to the needs of a live broadcast.",
+          r:"Helped deliver the live session while demonstrating flexibility, teamwork and the ability to contribute to media production beyond public speaking."},images:["assets/ig-live-1.jpg","assets/ig-live-2.jpg"]},
+      {title:"ITEE Faculty Orientation Presentation",date:"25 August 2026",role:"Presenter",
+        outcome:"Presented to 100+ students and staff at the faculty orientation and promoted the Ambassador Programme. Several students asked how to apply afterwards.",
+        star:{s:"Spoke at the ITEE Faculty orientation for newly admitted students and faculty members.",
+          t:"Introduce the student perspective, encourage active participation in university life and promote the Ambassador Programme.",
+          a:"Delivered a presentation to an audience of **100+ students and staff**, sharing first-hand experiences of studying at the University of Oulu and opportunities to become more involved in the university community.",
+          r:"Received highly engaged feedback, with multiple students approaching afterwards to ask about the Ambassador Programme and how to apply."},images:["assets/itee-orientation-1.jpg","assets/itee-orientation-2.jpg"]},
+      {title:"“I Wish I’d Known” · Exchange Students",date:"26 August 2026",role:"Co-presenter",
+        outcome:"Co-presented with two fellow ambassadors in an interactive session sharing practical lessons for students preparing for an exchange.",
+        star:{s:"Delivered a student experience session for students preparing for or considering an exchange period.",
+          t:"Share practical lessons and perspectives that students could benefit from knowing before their exchange.",
+          a:"Co-presented with two fellow ambassadors, combining personal experiences and practical advice in an interactive public-speaking session.",
+          r:"Helped students gain a more realistic perspective on the exchange experience and encouraged them to approach their time abroad more confidently and proactively."},images:["assets/wish-exchange-1.jpg","assets/wish-exchange-2.jpg"]},
+      {title:"“I Wish I’d Known” · International Degree Students",date:"27 August 2026",role:"Presenter",
+        outcome:"Shared practical lessons on studying and living in Finland with an audience of hundreds of new international degree students.",
+        star:{s:"Delivered a second “I Wish I’d Known” session focused on international degree students.",
+          t:"Help new international students understand what studying and living in Finland can actually be like.",
+          a:"Shared first-hand experiences alongside fellow ambassadors, covering lessons learned, adaptation and opportunities for making the most of university life.",
+          r:"Engaged an audience of hundreds of students and provided practical perspectives that helped new students approach their university journey with greater awareness and confidence."},images:["assets/wish-international-1.jpg"]},
+      {title:"Campus Tour for Trawise",date:"September 2026",role:"Tour lead",
+        outcome:"Led a campus tour for Trawise, an educational partner of the university, introducing facilities and study spaces and answering questions.",
+        star:{s:"Hosted a campus visit for Trawise, an educational partner of the University of Oulu.",
+          t:"Represent the university and introduce the campus environment from a student's perspective.",
+          a:"Led the campus tour, introduced key facilities and study spaces, and answered questions throughout the visit.",
+          r:"Provided an engaging first-hand perspective on studying at the University of Oulu and strengthened communication with an external educational partner."},images:["assets/trawise-tour-1.jpeg"]},
+      {title:"Researcher Night Instagram Takeover",date:"Upcoming",role:"Ambassador",
+        outcome:"Upcoming: selected to take over the University's Instagram during Researcher Night.",
+        star:{s:"Selected to support the University's Researcher Night through social-media coverage.",
+          t:"Bring the event and its research activities closer to students and prospective students through Instagram.",
+          a:"Take over the University's Instagram during the event, creating real-time content that captures the event atmosphere, activities and research experience.",
+          rl:"Planned outcome",
+          r:"Extend the event's reach through student-led digital communication while demonstrating experience in social-media storytelling and live event coverage."},images:["assets/researcher-night-1.jpg"]}
+    
+    ],
+    vsaf: [
+    {
+    title: "VietLead Forum",
+    date: "May 2026 · Paris, France",
+    role: "VSAF delegate",
+    outcome: "Represented VSAF at VietLead in Paris, a gathering of Vietnamese student associations from across Europe focused on leadership and knowledge exchange.",
+    link: "https://www.facebook.com/vsaf.org/posts/pfbid02EvaHAADE82Toiz3L1CVDQWnj2tFbidk816Et7Yvx5dLr9GCjc5L2jzsSUzqzye3wl",
+    linkLabel: "View Facebook post ↗",
+    star: {
+      s: "Vietnamese student associations across Europe work in different countries and contexts, which creates a need for stronger connections and knowledge exchange between communities.",
+      t: "Take part in a European-wide initiative on leadership, knowledge exchange and cooperation among Vietnamese student communities.",
+      a: "Travelled to Paris as part of the VSAF delegation and took part in VietLead alongside representatives of Vietnamese student associations from other European countries, joining discussions on leadership, community development and building stronger student networks.",
+      r: "Connected with Vietnamese student associations from other European countries, expanding my international network beyond Finland, and gained broader perspectives on student-community leadership."
+    },
+    images: ["assets/vietlead-1.jpg","assets/vietlead-2.jpg","assets/vietlead-3.jpg","assets/vietlead-4.jpg"]
+  },
+  {
+    title: "Airport Pickup",
+    date: "2025–2026",
+    role: "Volunteer · Media Lead",
+    outcome: "Led the media side of the airport-pickup programme for newly arrived Vietnamese students, from content planning to video editing, while also welcoming students on arrival.",
+    link: "https://www.facebook.com/vsaf.org/posts/pfbid0X5hy3ErN41W4F4sdWCSchG1auYjwRGvTRetqczQiDwjbDZJNBP62QVQnbZcSMaF5l",
+    linkLabel: "View Facebook post ↗",
+    star: {
+      s: "For students arriving in Finland for the first time, the airport is often their first point of contact with their new country and student life.",
+      t: "Support newly arrived Vietnamese students during their arrival and lead the media and content side of the programme.",
+      a: "Welcomed newly arrived students at the airport and helped them with their first steps in Finland. As media lead, handled content planning and media planning, coordinated production and edited video content.",
+      r: "Provided practical support to new students and produced communication materials for the programme, contributing to a welcoming Vietnamese student community in Finland."
+    },
+    images: ["assets/airport-pickup.jpg"]
+  },
+
+  {
+    title: "Get Together",
+    date: "Upcoming",
+    role: "Community Event",
+    outcome: "Upcoming annual gathering welcoming Vietnamese students who have recently arrived in Finland, creating an opportunity for new students to meet and connect with the wider community.",
+    star: {
+      s: "New Vietnamese students arriving in Finland need opportunities to meet others who are going through a similar transition and become connected with the existing student community.",
+      t: "Contribute to an annual beginning-of-the-year gathering that helps newly arrived students build their first connections within the Vietnamese student community.",
+      a: "Participating in the upcoming Get Together event, contributing to a welcoming environment where new students can meet other Vietnamese students and become familiar with the community.",
+      r: "Planned outcome: Help new students establish their first social connections in Finland and strengthen the sense of community among Vietnamese students."
+    },
+    images: [
+      "assets/get-together.jpg"
+    ]
+  },
+
+  {
+    title: "Summer Cottage",
+    date: "Summer 2026",
+    role: "Community Gathering",
+    outcome: "Joined a Vietnamese student community gathering at a summer cottage in Helsinki, creating an informal opportunity for students to connect outside their usual academic environment.",
+    link: "https://www.facebook.com/vsaf.org/posts/pfbid02MJ998kbTtDizvDjsLQYAXJbbxH6yQhGAnnXwjChp3LNsKU9PbCSfFZR8uQrGCMpQl",
+    linkLabel: "View Facebook post ↗",
+    star: {
+      s: "Student communities are strengthened not only through formal events, but also through informal opportunities for people to meet and build personal connections.",
+      t: "Take part in a social gathering that brings Vietnamese students together in a relaxed environment.",
+      a: "Joined the summer cottage gathering in Helsinki and spent time connecting with other Vietnamese students in an informal setting.",
+      r: "Strengthened connections within the Vietnamese student community and contributed to a more connected and supportive student network."
+    },
+    images: [
+      "assets/summer-cottage.jpg"
+    ]
+  }
+],
+  },
+    media:[
+        {type:"video",title:"Instagram Live · Cameraman",date:"2026",role:"Cameraman",
+      description:"Behind the camera for a Student Experience Instagram Live, running the camera and coordinating with the presenters throughout the broadcast.",
+      star:{s:"Supported a Student Experience Instagram Live as part of the University's student communication.",
+        t:"Contribute to the live production behind the scenes and help the session run smoothly.",
+        a:"Worked as the **cameraman**, operating the camera and coordinating with the presenters while the broadcast was live.",
+        r:"Helped deliver the live session by handling the camera and coordinating with the presenters throughout."},
+      skills:[
+        {t:"Filming and photography",d:"Operated the camera for a live broadcast and adapted to what the moment needed."},
+        {t:"Live production teamwork",d:"Coordinated with the presenters in real time during the broadcast."}
+      ],
+      fit:"Event and engagement content needs someone who can capture it. I can film events as well as present and host them.",
+      images:["assets/filming.jpg"]},
+    {type:"video",title:"ITEE Webinar · Co-host",date:"2 December 2025",role:"Co-host",
+      description:"Co-hosted the ITEE Faculty webinar “Study at the Silicon Valley of the North” on 2 December 2025, presenting live alongside a co-host.",
+      link: "https://drive.google.com/drive/folders/1DiW5ENyZQ4LlRXTzP__yxyXEX0abdcV5",
+      linkLabel: "Watch the full webinar!",
+      star:{s:"The ITEE Faculty held a webinar on 2 December 2025 titled “Study at the Silicon Valley of the North”.",
+        t:"Help host the webinar and speak live on its topic.",
+        a:"Co-hosted the webinar **“Study at the Silicon Valley of the North”** together with a co-host, speaking live to the audience.",
+        r:"Delivered the webinar as co-host for the ITEE Faculty."},
+      skills:[
+        {t:"Hosting and public speaking",d:"Co-hosted a live webinar for the ITEE Faculty."},
+        {t:"Working with a co-host",d:"Shared the session with a co-host and ran it together."},
+        {t:"Regular presenting",d:"Present to student audiences as an ambassador, including the ITEE Faculty orientation (100+ students and staff) and the “I Wish I’d Known” sessions."}
+      ],
+      fit:"Hosting sessions and events is part of supporting interaction between students and companies. This webinar was for the same faculty that runs the IKAPO project.",
+      images:["assets/media-webinar-1.jpeg"]},
+    {type:"social",title:"Instagram Takeover · Social Media & Outreach",date:"2026",role:"University of Oulu Ambassador",
+      description:"Took over the University's Instagram to reach prospective students with a student-led view of studying and living in Oulu.",
+      star:{s:"Took over the University of Oulu's Instagram to share the experience of studying and living in Oulu.",
+        t:"Give prospective students an authentic student perspective beyond formal university information.",
+        a:"Created and published a series of stories covering my academic experience, daily student life and personal perspective after my first year in Finland.",
+        r:"Generated strong audience interaction and questions from prospective students."},
+      skills:[
+        {t:"Social media storytelling",d:"Planned and published a series of stories in a personal, student voice."},
+        {t:"Outreach to prospective students",d:"Reached the University's audience on its own channel and drew questions and interaction."}
+      ],
+      fit:"Social media posts and engagement are a core part of the role. This is direct experience of reaching students through a university channel.",
+      images:["assets/media-ig-takeover.png"]},
+    {type:"written",title:"Ambassador Diary · #fineeducationambass #eddiestudentlife",date:"From October 2025 · 5 posts",role:"Author",
+      description:"My own five-post diary series, starting with the Laanila school visit in October 2025, telling the story of my journey as an ambassador in Finland under its own hashtags.",
+      star:{s:"Alongside my ambassador work, I started my own diary series about being an ambassador in Finland, beginning with the Laanila school visit in October 2025.",
+        t:"Tell the story of the journey in a consistent, recognisable format that readers can follow.",
+        a:"Wrote a series of **5 diary posts** telling the story of my journey as an ambassador, starting from the Laanila school visit, and organised it with two hashtags, **#fineeducationambass** and **#eddiestudentlife**, so the posts work as one findable series.",
+        r:"A five-post series that documents my ambassador journey in my own words."},
+      skills:[
+        {t:"Writing and storytelling",d:"Turned my ambassador experiences into a five-post diary in a personal voice."},
+        {t:"Content series design",d:"Built a hashtag system so the posts stay consistent and easy to find."}
+      ],
+      fit:"The role includes producing web articles and social media posts. The diary and blog show that I can write clearly and structure a content series.",
+      images:["assets/adiary-1.png","assets/adiary-2.png","assets/adiary-3.png","assets/adiary-4.png","assets/adiary-5.png"]},
+    {type:"written",title:"Media Planning · VSAF Airport Pickup",date:"2025–2026",role:"Media team · Master plan",
+      description:"Worked with my lead on audience and market research, then took charge of the master plan for the airport-pickup programme: content, collaborations and a posting schedule.",
+      link: "https://docs.google.com/spreadsheets/d/1wWIF5htwK5UXFB1mlMs68IqLMYhVNWp60GGk4CV0-J0/edit?usp=sharing",
+      linkLabel: "See the full promotion plan",
+      star:{s:"VSAF's Airport Pickup programme for newly arrived students needed communication that eached the students it was meant for.",
+        t:"Plan the media side of the programme so that it reached its audience.",
+        a:"Carried out the audience and market research together with my lead, then took responsibility for the **master plan**: the overall plan for content, collaborations to bring the programme to its audience, and a proper posting schedule of what would go out and when.",
+        r:"Produced the master plan that guided the programme's communication materials."},
+      skills:[
+        {t:"Audience and market research",d:"Researched who the programme needed to reach, together with my lead."},
+        {t:"Planning ownership",d:"Took responsibility for the master plan covering content, collaborations and the posting schedule."},
+        {t:"Collaboration",d:"Worked with my lead and with others to bring the programme to its audience."}
+      ],
+      fit:"The role involves planning programmes and events and producing the content that promotes them. This is the same workflow: research, plan, collaborate and publish.",
+      images:["assets/media-airport-planning.jpg"]},
+    {type:"video",title:"Airport Review Video Series · Video Editing",date:"2026",role:"Video editor · Media team",
+      description:"Edited 2 of the 5 videos in the airport review series (Helsinki Airport and Paris Airport). The series reached nearly 3,000 views on Facebook.",
+      link: "https://www.facebook.com/share/v/1JeZpG8Buo/",
+      linkLabel: "Watch the video",
+      star:{s:"VSAF's Airport Pickup programme included a series of five airport review videos shared on Facebook.",
+        t:"Edit two of the videos in the series as part of the media team.",
+        a:"Edited two of the five videos: the **Helsinki Airport** video and the **Paris Airport** video.",
+        r:"The airport review series reached nearly **3,000 views on Facebook**."},
+      skills:[
+        {t:"Video editing",d:"Edited two finished videos of the five-video series (Helsinki Airport and Paris Airport)."},
+        {t:"Working in a media team",d:"Contributed to a five-video series produced with the Airport Pickup media team."}
+      ],
+      fit:"Video creation and editing are listed as a plus in the role, and video is one of the main ways to share information with students.",
+      images:["assets/media-airport-video.jpg"]}
+  ]
+};
+
+const data = structuredClone(DEFAULT);
+let heroIndex=0, heroTimer;
+
+function toggleNav(){document.getElementById("navlinks").classList.toggle("open")}
+document.querySelectorAll(".navlinks a").forEach(a=>a.addEventListener("click",()=>document.getElementById("navlinks").classList.remove("open")));
+
+const probe=src=>new Promise(r=>{if(!src)return r(false);const i=new Image();i.onload=()=>r(true);i.onerror=()=>r(false);i.src=src});
+let heroList=[];
+async function renderHero(){
+  const ok=await Promise.all(data.hero.map(probe));
+  heroList=data.hero.filter((_,i)=>ok[i]);
+  const slides=document.getElementById("heroSlides"),dots=document.getElementById("heroDots");
+  slides.innerHTML=heroList.map((src,i)=>`<div class="hero-slide ${i===0?"active":""}" style="background-image:url('${src}')"></div>`).join("");
+  dots.innerHTML=heroList.length>1?heroList.map((_,i)=>`<button class="dot ${i===0?"active":""}" aria-label="Show image ${i+1}" onclick="showSlide(${i})"></button>`).join(""):"";
+  if(await probe(data.portrait)) document.getElementById("portraitBox").innerHTML=`<img src="${data.portrait}" alt="Eddie Nguyen"><div class="profile-caption"><strong>Eddie Nguyen</strong><span>Computer Science & Engineering · Oulu, Finland</span></div>`;
+  startCarousel();
+}
+function showSlide(i){heroIndex=i;document.querySelectorAll(".hero-slide").forEach((x,j)=>x.classList.toggle("active",j===i));document.querySelectorAll(".dot").forEach((x,j)=>x.classList.toggle("active",j===i))}
+function startCarousel(){clearInterval(heroTimer);if(heroList.length>1)heroTimer=setInterval(()=>showSlide((heroIndex+1)%heroList.length),5200)}
+
+function renderProjects(){
+  const el=document.getElementById("projects");
+  el.innerHTML=data.projects.map(p=>`
+  <article class="project" data-category="${p.category}">
+    <div class="projecttop"><div class="picon">${p.icon}</div><span class="badge ${p.ongoing?"ongoing":""}">${p.status}</span></div>
+    <h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.desc)}</p>
+    <div class="tags">${p.tags.map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>
+    <div class="project-actions"><button class="small" onclick="openProject('${p.id}')">View details →</button></div>
+  </article>`).join("");
+  document.querySelectorAll("#technical .filter").forEach(f=>f.onclick=()=>{document.querySelectorAll("#technical .filter").forEach(x=>x.classList.remove("active"));f.classList.add("active");const t=f.dataset.filter;document.querySelectorAll(".project").forEach(p=>p.style.display=t==="all"||p.dataset.category.includes(t)?"":"none")});
+}
+const codeUrl=p=>safeUrl(p.code)||((p.repo&&LINKS.github)?LINKS.github.replace(/\/?$/,"/")+p.repo:"");
+function openProject(id){
+  const p=data.projects.find(x=>x.id===id);if(!p)return;
+  const sec=(h,body)=>body?`<div class="psec"><h4>${h}</h4>${body}</div>`:"";
+  const facts=p.facts?`<div class="psec"><div class="factgrid">${p.facts.map(f=>`<div class="fact"><span>${escapeHtml(f.k)}</span><strong>${escapeHtml(f.v)}</strong></div>`).join("")}</div></div>`:"";
+  const flow=p.flow?`<div class="flow">${p.flow.map(x=>`<span>${escapeHtml(x)}</span>`).join("")}</div>`:"";
+  const skills=p.skills?`<div class="detail-list" style="margin-top:0">${p.skills.map(k=>`<div class="detail-row"><div class="check">✓</div><p><strong>${escapeHtml(k.t)}</strong>${escapeHtml(k.d)}</p></div>`).join("")}</div>`:"";
+  const tags=`<div class="skills" style="margin-top:0">${p.tags.map(t=>`<span class="skill">${escapeHtml(t)}</span>`).join("")}</div>`;
+  const url=codeUrl(p);
+  const deeper=url?sec("Want the full detail?",`<p>${escapeHtml(p.deeper||"The full code and documentation are on GitHub.")}</p><a class="linkbtn" href="${escapeAttr(url)}" target="_blank" rel="noopener">${escapeHtml(p.linkLabel||"View code on GitHub ↗")}</a>`):"";
+  document.getElementById("modalContent").innerHTML=`<div class="kicker">${escapeHtml(p.status)}</div><h3>${escapeHtml(p.title)}</h3><div class="modalbody"><p>${escapeHtml(p.desc)}</p>${facts}${sec("Overview",p.case?`<p>${escapeHtml(p.case)}</p>`:"")}${sec("How it works",flow)}${galleryHTML(p.images,p.title,true)}${sec("Skills demonstrated",skills)}${sec("Technologies",tags)}${p.next?`<p class="psec">${escapeHtml(p.next)}</p>`:""}${deeper}</div>`;
+  openModal();
+}
+
+const norm=x=>typeof x==="string"?{src:x,caption:""}:x;
+const safeUrl=u=>/^(https?:\/\/|assets\/)/.test(u||"")?u:"";
+const TYPE_LABEL={video:"Video",social:"Post & social",written:"Blog & campaign"};
+const TYPE_ICON={video:"▶",social:"✦",written:"✎"};
+const ORG_LABEL={ambassador:"University of Oulu Ambassador",vsaf:"VSAF · Vietnamese Student Association in Finland",media:"Media & content"};
+const LIST_LABEL={ambassador:"activities",vsaf:"activities",media:"items"};
+const expanded={ambassador:false,vsaf:false,media:false};
+let mediaFilter="all";
+const PREVIEW=3;
+
+function itemsFor(kind){
+  const all=kind==="media"?data.media:data.events[kind];
+  return all.map((it,i)=>({it,i})).filter(x=>kind!=="media"||mediaFilter==="all"||x.it.type===mediaFilter);
+}
+function cardHTML(kind,it,i){
+  const im=it.images&&it.images.length?norm(it.images[0]):null;
+  const cls=kind==="media"?"media":kind==="vsaf"?"vsaf":"";
+  const mark=kind==="media"?(TYPE_ICON[it.type]||"✦"):escapeHtml((it.title||"?").trim().charAt(0).toUpperCase());
+  const chips=kind==="media"?`<span>${TYPE_LABEL[it.type]||""}</span>`:`${it.date?`<span>${escapeHtml(it.date)}</span>`:""}${it.role?`<span>${escapeHtml(it.role)}</span>`:""}`;
+  return `<div class="ecard" role="button" tabindex="0" onclick="openItem('${kind}',${i})" onkeydown="if(event.key==='Enter')openItem('${kind}',${i})"><div class="ecover ${cls}">${im?`<img src="${escapeAttr(im.src)}" alt="${escapeAttr(im.caption||it.title)}" loading="lazy">`:mark}</div><div class="ebody"><div class="eventmeta" style="margin-top:0">${chips}</div><h4>${escapeHtml(it.title)}</h4><p>${escapeHtml(it.outcome||it.description||"")}</p><span class="more">View details →</span></div></div>`;
+}
+function renderList(kind){
+  const list=itemsFor(kind),shown=expanded[kind]?list:list.slice(0,PREVIEW);
+  document.getElementById("cards-"+kind).innerHTML=shown.length?shown.map(x=>cardHTML(kind,x.it,x.i)).join(""):"<p style='color:var(--muted);font-size:14px'>Nothing added here yet.</p>";
+  const btn=document.getElementById("toggle-"+kind);
+  if(list.length>PREVIEW){btn.style.display="";btn.textContent=expanded[kind]?"Show less ↑":`View all ${list.length} ${LIST_LABEL[kind]} ↓`}else btn.style.display="none";
+}
+function toggleExpand(kind){
+  expanded[kind]=!expanded[kind];renderList(kind);
+  if(!expanded[kind])document.getElementById("cards-"+kind).scrollIntoView({block:"center",behavior:"smooth"});
+}
+function setMediaFilter(f){
+  mediaFilter=f;expanded.media=false;
+  document.querySelectorAll("#mediaFilters .filter").forEach(b=>b.classList.toggle("active",b.dataset.mf===f));
+  renderList("media");
+}
+function galleryHTML(images,title,big){
+  const list=(images||[]).map(norm);
+  return list.length?`<div class="gallery ${big?"big":""}">${list.map(im=>`<figure><img src="${escapeAttr(im.src)}" alt="${escapeAttr(im.caption||title)}" onclick="openLightbox(this.src)">${im.caption?`<figcaption>${escapeHtml(im.caption)}</figcaption>`:""}</figure>`).join("")}</div>`:"";
+}
+function openItem(kind,i){
+  const it=kind==="media"?data.media[i]:data.events[kind][i];
+  if(!it)return;
+
+  const chips=kind==="media"
+    ? `<span>${TYPE_LABEL[it.type]||""}</span>`
+    : `${it.date?`<span>${escapeHtml(it.date)}</span>`:""}
+       ${it.role?`<span>${escapeHtml(it.role)}</span>`:""}`;
+
+  const link=safeUrl(it.link);
+
+  let starHTML="";
+
+  if(it.star){
+    starHTML=`
+      <div class="psec">
+        <h4>Situation</h4>
+        <p>${escapeHtml(it.star.s||"")}</p>
+      </div>
+
+      <div class="psec">
+        <h4>Task</h4>
+        <p>${escapeHtml(it.star.t||"")}</p>
+      </div>
+
+      <div class="psec">
+        <h4>Action</h4>
+        <p>${escapeHtml(it.star.a||"")}</p>
+      </div>
+
+      <div class="psec">
+        <h4>Result</h4>
+        <p>${escapeHtml(it.star.r||"")}</p>
+      </div>
+    `;
+  }
+
+  document.getElementById("modalContent").innerHTML=`
+    <div class="kicker">${ORG_LABEL[kind]}</div>
+    <h3>${escapeHtml(it.title)}</h3>
+
+    <div class="eventmeta">
+      ${chips}
+    </div>
+
+    <div class="modalbody">
+
+      ${it.outcome ? `
+        <div class="psec">
+          <h4>Summary</h4>
+          <p>${escapeHtml(it.outcome)}</p>
+        </div>
+      ` : ""}
+
+      ${starHTML}
+
+      ${link ? `
+        <a class="linkbtn"
+           href="${escapeAttr(link)}"
+           target="_blank"
+           rel="noopener">
+          ${escapeHtml(it.linkLabel||"View original ↗")}
+        </a>
+      ` : ""}
+
+      ${galleryHTML(it.images,it.title,true)}
+
+    </div>
+  `;
+
+  openModal();
+}
+function openLightbox(src){document.getElementById("lightboxImg").src=src;document.getElementById("lightbox").classList.add("open")}
+function closeLightbox(){document.getElementById("lightbox").classList.remove("open")}
+
+function openModal(){document.getElementById("modal").classList.add("open");document.body.style.overflow="hidden"}
+function closeModal(e){if(!e||e.target.id==="modal"){document.getElementById("modal").classList.remove("open");document.body.style.overflow=""}}
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModal();closeLightbox()}});
+
+function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function escapeAttr(s){return escapeHtml(s)}
+
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll(".reveal").forEach(x=>obs.observe(x));
+document.querySelectorAll("[data-link]").forEach(a=>{const v=LINKS[a.dataset.link];if(!v){a.style.display="none";return}a.href=a.dataset.link==="email"?"mailto:"+v:v});
+function renderCommunity(){
+  const box=document.getElementById("collage");box.innerHTML="";
+  const exts=["jpg","jpeg","png","webp","JPG","PNG"];
+  data.community.forEach(c=>{
+    const im=norm(c),base=im.src.replace(/\.[a-z]+$/i,"");
+    const fig=document.createElement("figure"),img=document.createElement("img");
+    let k=0;
+    img.alt=im.caption||"Community moment";
+    img.onclick=()=>openLightbox(img.src);
+    img.onerror=()=>{k++;if(k<exts.length)img.src=base+"."+exts[k];else fig.remove()};
+    img.src=base+"."+exts[0];
+    fig.appendChild(img);
+    if(im.caption){const cap=document.createElement("figcaption");cap.textContent=im.caption;fig.appendChild(cap)}
+    box.appendChild(fig);
+  });
+}
+renderHero();renderProjects();renderList("ambassador");renderList("vsaf");renderList("media");renderCommunity();
+</script>
+</body>
+</html>
