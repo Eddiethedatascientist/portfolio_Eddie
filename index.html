@@ -595,7 +595,7 @@ async function renderHero(){
   const slides=document.getElementById("heroSlides"),dots=document.getElementById("heroDots");
   slides.innerHTML=heroList.map((src,i)=>`<div class="hero-slide ${i===0?"active":""}" style="background-image:url('${src}')"></div>`).join("");
   dots.innerHTML=heroList.length>1?heroList.map((_,i)=>`<button class="dot ${i===0?"active":""}" aria-label="Show image ${i+1}" onclick="showSlide(${i})"></button>`).join(""):"";
-  if(await probe(data.portrait)) document.getElementById("portraitBox").innerHTML=`<img src="${data.portrait}" alt="Eddie Nguyen"><div class="profile-caption"><strong>Eddie Nguyen</strong><span>Computer Science & Engineering · Oulu, Finland</span></div>`;
+  if(await probe(data.portrait)) document.getElementById("portraitBox").innerHTML=`<img src="${data.portrait}" alt="Bao Nguyen"><div class="profile-caption"><strong>Bao Nguyen</strong><span>Computer Science & Engineering · Oulu, Finland</span></div>`;
   startCarousel();
 }
 function showSlide(i){heroIndex=i;document.querySelectorAll(".hero-slide").forEach((x,j)=>x.classList.toggle("active",j===i));document.querySelectorAll(".dot").forEach((x,j)=>x.classList.toggle("active",j===i))}
